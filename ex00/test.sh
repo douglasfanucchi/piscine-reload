@@ -44,3 +44,21 @@ remove_test_files() {
 get_nth_line() {
   echo $1 | sed -n $2'p'
 }
+
+test_should_guarantee_correct_permission_on_first_file() {
+  create_test_files
+  if [ $? -eq 1 ]; then
+    return 1;
+  fi
+  cd test_files
+  echo $(get_nth_line "$(ls -l)" 2) | read permission _
+  cd ..
+
+  expected_permission="drwx--xr-x"
+
+  assert_str_eq $expected_permission $permission "on file test0"
+
+  remove_test_files
+}
+
+test_should_guarantee_correct_permission_on_first_file
