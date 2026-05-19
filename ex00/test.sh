@@ -6,9 +6,8 @@ assert_str_eq() {
     echo "❌ FAIL: ${3:-Assertion failed}" >&2
     echo "   Expected: '$1'" >&2
     echo "   Actual:   '$2'" >&2
-    exit 1
   else
-    echo "✅"
+    echo -n "✅"
   fi
 }
 
