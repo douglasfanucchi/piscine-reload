@@ -77,5 +77,29 @@ test_should_guarantee_two_hard_links_on_first_file() {
   remove_test_files
 }
 
+test_should_guarantee_correct_timestamp_on_first_file() {
+  create_test_files
+  if [ $? -eq 1 ]; then
+    return 1;
+  fi
+  cd test_files
+  echo $(get_nth_line "$(ls -l)" 2) | read permission hard_links owner group bytes month day hour name
+  cd ..
+
+  expected_month="Jun"
+  expected_day=1
+  expected_hour='20:47'
+  if [ "$expected_hour" != "$hour" ]; then
+    expected_hour="2025"
+  fi
+
+  assert_str_eq $expected_month $month "on file test0"
+  assert_str_eq $expected_day $day "on file test0"
+  assert_str_eq $expected_hour $hour "on file test0"
+
+  remove_test_files
+}
+
 test_should_guarantee_correct_permission_on_first_file
 test_should_guarantee_two_hard_links_on_first_file
+test_should_guarantee_correct_timestamp_on_first_file
