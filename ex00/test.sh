@@ -11,3 +11,12 @@ assert_str_eq() {
     echo "✅"
   fi
 }
+
+check_file() {
+  if [ ! -f "$1" ]; then
+    echo "File $1 does not exist." >&2
+   return 1
+  fi
+
+  return 0
+}
