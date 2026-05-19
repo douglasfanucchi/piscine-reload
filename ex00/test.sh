@@ -40,3 +40,7 @@ create_test_files() {
 remove_test_files() {
   rm -rf test_files
 }
+
+get_nth_line() {
+  echo $1 | sed -n $2'p'
+}
