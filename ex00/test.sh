@@ -61,4 +61,21 @@ test_should_guarantee_correct_permission_on_first_file() {
   remove_test_files
 }
 
+test_should_guarantee_two_hard_links_on_first_file() {
+  create_test_files
+  if [ $? -eq 1 ]; then
+    return 1;
+  fi
+  cd test_files
+  echo $(get_nth_line "$(ls -l)" 2) | read permission hard_links _
+  cd ..
+
+  expected_hard_links=2
+
+  assert_str_eq $expected_hard_links $hard_links "on file test0"
+
+  remove_test_files
+}
+
 test_should_guarantee_correct_permission_on_first_file
+test_should_guarantee_two_hard_links_on_first_file
