@@ -20,3 +20,24 @@ check_file() {
 
   return 0
 }
+
+create_test_files() {
+  check_file "exo.tar"
+
+  if [ $? -eq "1" ]; then
+    return 1;
+  fi
+
+  mkdir test_files
+  cp "exo.tar" test_files
+  cd test_files
+  tar -xpf "exo.tar" > /dev/null
+  rm -rf exo.tar
+  cd ..
+
+  return 0;
+}
+
+remove_test_files() {
+  rm -rf test_files
+}
