@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+mkdir test0
+chmod 715 test0
+touch -t 202506012047 test0
+
+tar -cf exo.tar test0
