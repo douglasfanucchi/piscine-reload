@@ -399,6 +399,22 @@ test_should_guarantee_correct_name_on_test6_file() {
   remove_test_files
 }
 
+test_should_guarantee_correct_permission_on_test6() {
+  create_test_files
+  if [ $? -eq 1 ]; then
+    return 1;
+  fi
+  cd test_files
+  echo $(get_nth_line "$(ls -l)" 8) | read permission _
+  cd ..
+
+  expected_permission="l"
+
+  assert_str_eq $expected_permission ${permission:0:1}
+
+  remove_test_files
+}
+
 test_should_guarantee_correct_permission_on_first_file
 test_should_guarantee_two_hard_links_on_first_file
 test_should_guarantee_correct_timestamp_on_first_file
@@ -418,3 +434,4 @@ test_should_guarantee_correct_permission_on_test4
 test_should_guarantee_correct_bytes_on_test4
 test_should_guarantee_correct_timestamps_on_test4_file
 test_should_guarantee_correct_name_on_test6_file
+test_should_guarantee_correct_permission_on_test6
