@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-FILES=(test0 test1 test2 test3 test5)
+FILES=(test0 test1 test2 test3 test4 test5)
 
 mkdir test0
 chmod 715 test0
@@ -20,6 +20,8 @@ echo -n 1 > test3
 chmod 404 test3
 ln test3 test5
 touch -t 202506012344 test3
+
+touch test4
 
 tar -cf exo.tar "${FILES[@]}"
 rm -rf $FILES "${FILES[@]}"
