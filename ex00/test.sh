@@ -203,6 +203,29 @@ test_should_guarantee_correct_test2_permissions() {
   remove_test_files
 }
 
+test_should_guarantee_correct_timestamps_on_test1_file() {
+  create_test_files
+  if [ $? -eq 1 ]; then
+    return 1;
+  fi
+  cd test_files
+  echo $(get_nth_line "$(ls -l)" 4) | read permission hl o g bytes month day hour _
+  cd ..
+
+  expected_month=Jun
+  expected_day=1
+  expected_hour="22:45"
+  if [ $hour != $expected_hour ]; then
+    expected_hour=2025
+  fi
+
+  assert_str_eq $expected_month $month
+  assert_str_eq $expected_day $day
+  assert_str_eq $expected_hour $hour
+
+  remove_test_files
+}
+
 test_should_guarantee_correct_permission_on_first_file
 test_should_guarantee_two_hard_links_on_first_file
 test_should_guarantee_correct_timestamp_on_first_file
