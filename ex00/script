@@ -16,6 +16,7 @@ chmod 504 test2
 touch -t 202506012245 test2
 
 touch test3
+echo -n 1 > test3
 chmod 404 test3
 ln test3 test5
 
