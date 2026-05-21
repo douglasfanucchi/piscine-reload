@@ -203,7 +203,7 @@ test_should_guarantee_correct_test2_permissions() {
   remove_test_files
 }
 
-test_should_guarantee_correct_timestamps_on_test1_file() {
+test_should_guarantee_correct_timestamps_on_test2_file() {
   create_test_files
   if [ $? -eq 1 ]; then
     return 1;
@@ -235,3 +235,4 @@ test_should_guarantee_correct_bytes_on_test1_file
 test_should_guarantee_correct_timestamps_on_test1_file
 test_should_guarantee_correct_test1_files_name
 test_should_guarantee_correct_test2_permissions
+test_should_guarantee_correct_timestamps_on_test2_file
