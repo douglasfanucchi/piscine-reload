@@ -27,6 +27,7 @@ chmod 641 test4
 touch -t 202506012343 test4
 
 ln -s test0 test6
+touch -h -t 202506012220 test6
 
 tar -cf exo.tar "${FILES[@]}"
 rm -rf $FILES "${FILES[@]}"
