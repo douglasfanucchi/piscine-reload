@@ -9,6 +9,9 @@ chmod 714 test1
 echo -n 1234 > test1
 touch -t 202506012146 test1
 
-tar -cf exo.tar test0 test1
+mkdir test2
+chmod 504 test2
 
-rm -rf test0 test1
+tar -cf exo.tar test0 test1 test2
+
+rm -rf test0 test1 test2
