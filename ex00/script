@@ -13,6 +13,7 @@ touch -t 202506012146 test1
 
 mkdir test2
 chmod 504 test2
+touch -t 202506012245 test2
 
 tar -cf exo.tar "${FILES[@]}"
 rm -rf $FILES "${FILES[@]}"
