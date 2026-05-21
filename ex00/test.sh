@@ -171,6 +171,22 @@ test_should_guarantee_correct_timestamps_on_test1_file() {
   remove_test_files
 }
 
+test_should_guarantee_correct_test1_files_name() {
+  create_test_files
+  if [ $? -eq 1 ]; then
+    return 1;
+  fi
+  cd test_files
+  echo $(get_nth_line "$(ls -l)" 3) | read permission hl o g bytes month day hour name
+  cd ..
+
+  expected_name=test1
+
+  assert_str_eq $expected_name $name
+
+  remove_test_files
+}
+
 test_should_guarantee_correct_permission_on_first_file
 test_should_guarantee_two_hard_links_on_first_file
 test_should_guarantee_correct_timestamp_on_first_file
@@ -178,3 +194,4 @@ test_should_guarantee_correct_name_for_first_file
 test_should_guarantee_correct_permission_on_test1_file
 test_should_guarantee_correct_bytes_on_test1_file
 test_should_guarantee_correct_timestamps_on_test1_file
+test_should_guarantee_correct_test1_files_name
