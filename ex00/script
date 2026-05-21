@@ -4,4 +4,11 @@ mkdir test0
 chmod 715 test0
 touch -t 202506012047 test0
 
-tar -cf exo.tar test0
+touch test1
+chmod 714 test1
+echo -n 1234 > test1
+touch -t 202506012146 test1
+
+tar -cf exo.tar test0 test1
+
+rm -rf test0 test1
