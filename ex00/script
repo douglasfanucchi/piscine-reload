@@ -19,6 +19,7 @@ touch test3
 echo -n 1 > test3
 chmod 404 test3
 ln test3 test5
+touch -t 202506012344 test3
 
 tar -cf exo.tar "${FILES[@]}"
 rm -rf $FILES "${FILES[@]}"
