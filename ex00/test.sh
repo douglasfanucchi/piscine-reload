@@ -344,6 +344,22 @@ test_should_guarantee_correct_permission_on_test4() {
   remove_test_files
 }
 
+test_should_guarantee_correct_bytes_on_test4() {
+  create_test_files
+  if [ $? -eq 1 ]; then
+    return 1;
+  fi
+  cd test_files
+  echo $(get_nth_line "$(ls -l)" 6) | read permission hardlinks o g bytes _
+  cd ..
+
+  expected_bytes=2
+
+  assert_str_eq $expected_bytes $bytes
+
+  remove_test_files
+}
+
 test_should_guarantee_correct_permission_on_first_file
 test_should_guarantee_two_hard_links_on_first_file
 test_should_guarantee_correct_timestamp_on_first_file
@@ -360,3 +376,4 @@ test_should_guarantee_correct_bytes_on_test3
 test_should_guarantee_correct_timestamps_on_test3_file
 test_should_guarantee_correct_name_on_test4_file
 test_should_guarantee_correct_permission_on_test4
+test_should_guarantee_correct_bytes_on_test4
