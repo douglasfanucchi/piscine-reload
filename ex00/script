@@ -22,6 +22,7 @@ ln test3 test5
 touch -t 202506012344 test3
 
 touch test4
+echo -n 12 > test4
 chmod 641 test4
 
 tar -cf exo.tar "${FILES[@]}"
